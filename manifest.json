@@ -1,0 +1,23 @@
+{
+  "name": "Estadysta Nigeria Limited",
+  "short_name": "Estadysta",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0E1A22",
+  "theme_color": "#0E1A22",
+  "icons": [
+    {
+      "src": "assets/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "lang": "en-NG",
+  "description": "Solution-oriented telecom, power and infrastructure services across Nigeria."
+}

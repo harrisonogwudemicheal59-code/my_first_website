@@ -1,0 +1,46 @@
+# ================================================================
+#  Estadysta - OPTIONAL Apache server config
+#  To use: rename this file to  .htaccess  (note the leading dot)
+#  and upload it to the SAME folder as index.html.
+#  Every block is wrapped in <IfModule>, so unsupported features are
+#  skipped. If your host ever shows a "500 Internal Server Error"
+#  after adding it, simply delete the .htaccess file - the site works
+#  fine without it.
+# ================================================================
+
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+AddDefaultCharset UTF-8
+
+# --- Compression (faster loading on mobile data) ---
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/xml application/json image/svg+xml
+</IfModule>
+
+# --- Browser caching (style.css uses ?v=... so updates still arrive) ---
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 1 week"
+  ExpiresByType application/json "access plus 1 week"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+</IfModule>
+
+# --- Standard security headers ---
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# --- Optional: force HTTPS. Remove the leading # on the 3 lines below
+#     ONLY if your site has an SSL certificate (https:// works). ---
+# <IfModule mod_rewrite.c>
+#   RewriteEngine On
+#   RewriteCond %{HTTPS} off
+#   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# </IfModule>
